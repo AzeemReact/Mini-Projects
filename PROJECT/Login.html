@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>LIBRARIES</title>
+<link rel = "icon" href ="book.png" type="image/x-icon">
+
+<div class="marq">
+<marquee><h1>  LIBRARIES OF PROGRAMMING LANGUAGE <h1></marquee>
+</div>
+
+</head>
+<body>
+
+<div class="tittle">
+<h2> LOGIN PAGE </h2>
+</div>
+
+<form id="form_id" method="post" name="myform">
+
+<div class="label1">
+<label><h2>NAME </h2></label>
+</div>
+
+<div class="name">
+<input type="text" name="username" id="username" placeholder="react"/>
+</div>
+
+<div class="label2">
+<label><h2>PASSWORD </h2></label>
+</div>
+
+<div class="pass">
+<input type="password" name="password" id="password" placeholder="12345"/>
+</div>
+<input type="button" value="LOGIN" id="submit" onclick="validate()"/>
+</form>
+
+
+<style type="text/css">
+
+
+marquee{
+background-color: #EE838A;
+border-radius: 30px;
+border:red solid;
+}
+body{
+
+
+    background-image: url("back.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width:98.3%;
+    height:65%;
+}
+
+input[type="text"] {
+    text-align:center;
+    width: 250px;
+    height:41px;
+    margin-left:600px;
+    margin-top:-4.10%;
+    border-radius:10px;
+}
+.label1{  
+    font-weight:bold;
+    margin-left:430px;
+    margin-top:-100px;
+    margin-bottom:5px;
+    
+    color:white;
+    font-style: normal;    
+    border-radius:10px;
+}
+
+input[type="password"] {
+    
+    text-align:center;
+    width: 250px;
+    height:41px;
+    margin-left:600px;
+    margin-top:-4.10%;
+    border-radius:10px;
+}
+.label2{  
+    font-weight:bold;
+    margin-left:430px;
+    margin-top:30px;
+    color:white;
+    font-style: normal;
+    border-radius:10px;
+}
+input[type="button"] {
+
+    background-color:rgb(138, 0, 71);
+    font-size:20px;
+    font-weight:bold;
+    color:rgba(255, 237, 71, 0.5);
+    text-align:center;
+    width: 250px;
+    height:41px;
+    margin-left:470px;
+    margin-top:5%;
+    border-radius:10px;
+    border:black solid;
+
+    }
+.tittle{
+color:#202020;
+border-radius: 10px;
+ margin-bottom:200px;
+margin-top:110px;
+margin-left:460px;
+border:black solid;  
+width:250px;
+height:50px;
+ padding-left:58px;
+padding-top:-15px;
+padding-bottom:2px;
+background-color:rgb(186, 189, 203);
+
+}
+</style>
+
+<script>
+function validate(){
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+
+if ( username == "react" && password == "12345"){
+window.location="List.html"; 
+
+}
+else{
+alert("--------Error-------");
+}
+}
+</script>
+</html>
