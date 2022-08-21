@@ -1,0 +1,413 @@
+package Task;
+
+import java.awt.Color;
+import java.awt.ScrollPaneAdjustable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.security.interfaces.RSAKey;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollBar;
+import javax.swing.JSlider;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class OMA {
+
+	public static void main(String[] args) {
+
+		JFrame frame = new JFrame("OMA HIGHER SECONDARY SCHOOL");
+		frame.setSize(800, 800);
+		frame.setVisible(true);
+
+		JButton button = new JButton(" REGISTER");
+		button.setBounds(120, 120, 100, 30);
+		frame.add(button);
+
+		JLabel label = new JLabel("WELCOME TO OMA SCHOOL");
+		label.setForeground(Color.blue);
+		label.setBounds(100, 20, 400, 90);
+		frame.add(label);
+
+		JButton button1 = new JButton(" LOGIN");
+		button1.setBounds(120, 200, 100, 30);
+		frame.add(button1);
+
+		JButton button2 = new JButton("DELETE");
+		button2.setBounds(120, 280, 100, 30);
+		frame.add(button2);
+		frame.setLayout(null);
+
+		button2.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				JFrame fr = new JFrame("DELETE RECORD");
+				fr.setSize(400, 400);
+				fr.setVisible(true);
+				fr.setLayout(null);
+
+				JLabel label3 = new JLabel("NAME");
+				label3.setBounds(87, 130, 80, 40);
+				fr.add(label3);
+
+				JTextField field3 = new JTextField();
+				field3.setBounds(150, 140, 120, 20);
+				fr.add(field3);
+
+				JButton button1 = new JButton("OK");
+				button1.setBounds(120, 200, 80, 30);
+				fr.add(button1);
+
+				button1.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+
+						Connection con = null;
+						PreparedStatement state = null;
+
+						try {
+							Class.forName("org.postgresql.Driver");
+							con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/oma", "postgres",
+									"root");
+							state = con.prepareStatement("delete from student where name=?");
+							state.setString(1, field3.getText());
+							int totalRecDeleted = state.executeUpdate(); // delete from studetn were name =arun
+							state.close();
+							con.close();
+							if (totalRecDeleted > 0) {
+								JOptionPane.showMessageDialog(fr, "DELETE SUCESSFUL", " NOTICE ",
+										JOptionPane.WARNING_MESSAGE);
+							} else {
+								JOptionPane.showMessageDialog(fr, "NO RECORDS FOUND", " NOTICE ",
+										JOptionPane.WARNING_MESSAGE);
+							}
+
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(fr, " DONT HAVE NAME", " ALERT ",
+									JOptionPane.WARNING_MESSAGE);
+						}
+
+					}
+				});
+
+			}
+		});
+		System.out.println(" the delete query");
+
+		button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame1 = new JFrame(" STUDENT REGISTER ");
+				frame1.setSize(400, 400);
+				frame1.setVisible(true);
+				frame1.setLayout(null);
+
+				JLabel label = new JLabel("NAME");
+				label.setForeground(Color.black);
+				label.setBounds(52, 50, 80, 25);
+				frame1.add(label);
+
+				JTextField field = new JTextField();
+				field.setBounds(150, 50, 120, 20);
+				frame1.add(field);
+
+				JLabel label1 = new JLabel("PASSWORD");
+				label1.setForeground(Color.black);
+				label1.setBounds(52, 80, 80, 25);
+				frame1.add(label1);
+
+				JTextField field1 = new JTextField();
+				field1.setBounds(150, 80, 120, 20);
+				frame1.add(field1);
+
+				JLabel label2 = new JLabel("AGE");
+				label2.setForeground(Color.black);
+				label2.setBounds(52, 110, 80, 35);
+				frame1.add(label2);
+
+				JTextField field2 = new JTextField();
+				field2.setBounds(150, 110, 120, 20);
+				frame1.add(field2);
+
+				JLabel label3 = new JLabel("CLASS");
+				label3.setForeground(Color.black);
+				label3.setBounds(52, 140, 80, 35);
+				frame1.add(label3);
+
+				JTextField field3 = new JTextField();
+				field3.setBounds(150, 140, 120, 20);
+				frame1.add(field3);
+
+				JLabel label4 = new JLabel("CITY");
+				label4.setForeground(Color.black);
+				label4.setBounds(52, 170, 80, 35);
+				frame1.add(label4);
+
+				JTextField field4 = new JTextField();
+				field4.setBounds(150, 170, 120, 20);
+				frame1.add(field4);
+
+				JLabel label5 = new JLabel("GENDER");
+				label5.setForeground(Color.black);
+				label5.setBounds(52, 200, 80, 35);
+				frame1.add(label5);
+
+				JTextField field5 = new JTextField();
+				field5.setBounds(150, 200, 120, 20);
+				frame1.add(field5);
+
+				JLabel label6 = new JLabel("EMAIL ID");
+				label6.setForeground(Color.black);
+				label6.setBounds(52, 230, 80, 35);
+				frame1.add(label6);
+
+				JTextField field6 = new JTextField();
+				field6.setBounds(150, 230, 120, 20);
+				frame1.add(field6);
+
+				JLabel label7 = new JLabel("PHONE NO");
+				label7.setForeground(Color.black);
+				label7.setBounds(52, 260, 95, 35);
+				frame1.add(label7);
+
+				JTextField field7 = new JTextField();
+				field7.setBounds(150, 260, 120, 20);
+				frame1.add(field7);
+
+				JButton button1 = new JButton("OK");
+				button1.setBounds(120, 300, 60, 30);
+				frame1.add(button1);
+
+				JButton button2 = new JButton("CLEAR");
+				button2.setBounds(190, 300, 80, 30);
+				frame1.add(button2);
+
+				button1.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+
+						Connection connect = null;
+						PreparedStatement state = null;
+						try {
+							Class.forName("org.postgresql.Driver");
+							connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/oma", "postgres",
+									"root");
+							state = connect.prepareStatement("insert into student values(?,?,?,?,?,?,?,?)");
+							state.setString(1, field.getText());
+							String password = field1.getText();
+							state.setInt(2, Integer.parseInt(password));
+							String age = field2.getText();
+							state.setInt(3, Integer.parseInt(age));
+							state.setString(4, field3.getText());
+							state.setString(5, field4.getText());
+							state.setString(6, field5.getText());
+							state.setString(7, field6.getText());
+							String phone = field7.getText();
+							state.setInt(8, Integer.parseInt(phone));
+							state.execute();
+							state.close();
+							connect.close();
+							JOptionPane.showMessageDialog(frame1, " SUCESSFUL", " NOTICE ",
+									JOptionPane.WARNING_MESSAGE);
+
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(frame1, " NOT COMPLETE", " ALERT ",
+									JOptionPane.WARNING_MESSAGE);
+						}
+
+					}
+				});
+
+				button2.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+						field.setText(null);
+						field1.setText(null);
+						field2.setText(null);
+						field3.setText(null);
+						field4.setText(null);
+						field5.setText(null);
+						field6.setText(null);
+						field7.setText(null);
+
+					}
+				});
+
+			}
+		});
+
+		System.out.println("  the register program end     ");
+
+		button1.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				JFrame login = new JFrame("LOGIN");
+				login.setSize(400, 400);
+				login.setVisible(true);
+				login.setLayout(null);
+
+				JLabel label = new JLabel("USER NAME");
+				label.setBounds(52, 80, 80, 25);
+				login.add(label);
+
+				JTextField field1 = new JTextField();
+				field1.setBounds(150, 80, 120, 20);
+				login.add(field1);
+
+				JLabel label1 = new JLabel("PASSWORD");
+				label1.setBounds(52, 110, 80, 25);
+				login.add(label1);
+
+				JTextField field2 = new JTextField();
+				field2.setBounds(150, 110, 120, 20);
+				login.add(field2);
+
+				JButton button1 = new JButton("LOGIN");
+				button1.setBounds(80, 170, 90, 30);
+				login.add(button1);
+
+				JButton button2 = new JButton("CLEAR");
+				button2.setBounds(190, 170, 90, 30);
+				login.add(button2);
+
+				button1.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+						String name = field1.getText();
+						String pas = field2.getText();
+						Connection con = null;
+						Statement state = null;
+
+						try {
+							Class.forName("org.postgresql.Driver");
+							con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/oma", "postgres",
+									"root");
+							state = con.createStatement();
+							StringBuffer selectQuery = new StringBuffer("select * from student where name='");
+							selectQuery.append(field1.getText());
+							selectQuery.append("'");
+							System.out.println("Final Query : " + selectQuery.toString());
+							ResultSet rs = state.executeQuery(selectQuery.toString());
+							boolean noRowsFound = true;
+							while (rs.next()) {
+
+								JFrame enter = new JFrame("DETAILS");
+								enter.setSize(400, 400);
+								enter.setVisible(true);
+								enter.setLayout(null);
+
+								JTextArea area = new JTextArea();
+								area.setBounds(400, 50, 400, 600);
+								enter.add(area);
+
+								JLabel label = new JLabel("OMA SCHOOL DETAILS");
+								label.setForeground(Color.blue);
+								label.setBounds(100, 30, 150, 50);
+								area.add(label);
+
+								if (name.equals(rs.getString(1)) && Integer.parseInt(pas) == rs.getInt(2)) {
+									
+									String age = String.valueOf(rs.getInt(3));
+									String phone = String.valueOf(rs.getInt(8));
+
+									System.out.println("type case sucess");
+
+									JLabel label1 = new JLabel("USER NAME");
+									label1.setBounds(52, 100, 90, 25);
+									area.add(label1);
+
+									JLabel label2 = new JLabel(rs.getString(1));
+									label2.setBounds(220, 100, 120, 25);
+									area.add(label2);
+
+									JLabel label3 = new JLabel("PASSWORD");
+									label3.setBounds(52, 140, 110, 25);
+									area.add(label3);
+
+									JLabel label4 = new JLabel("*******");
+									label4.setBounds(220, 140, 120, 25);
+									area.add(label4);
+
+									JLabel label5 = new JLabel("AGE");
+									label5.setBounds(52, 180, 120, 25);
+									area.add(label5);
+
+									JLabel label6 = new JLabel(age);
+									label6.setBounds(220, 180, 120, 25);
+									area.add(label6);
+
+									JLabel label7 = new JLabel("CLASS");
+									label7.setBounds(52, 220, 130, 25);
+									area.add(label7);
+
+									JLabel label8 = new JLabel(rs.getString(4));
+									label8.setBounds(220, 220, 120, 25);
+									area.add(label8);
+
+									JLabel label9 = new JLabel("CITY");
+									label9.setBounds(52, 260, 140, 25);
+									area.add(label9);
+
+									JLabel label10 = new JLabel(rs.getString(5));
+									label10.setBounds(220, 260, 120, 25);
+									area.add(label10);
+
+									JLabel label11 = new JLabel("GENDER");
+									label11.setBounds(52, 300, 150, 25);
+									area.add(label11);
+
+									JLabel label12 = new JLabel(rs.getString(6));
+									label12.setBounds(220, 300, 120, 25);
+									area.add(label12);
+
+									JLabel label13 = new JLabel("EMAIL");
+									label13.setBounds(52, 340, 160, 25);
+									area.add(label13);
+
+									JLabel label14 = new JLabel(rs.getString(7));
+									label14.setBounds(220, 340, 120, 25);
+									area.add(label14);
+
+									JLabel label15 = new JLabel("PHONE");
+									label15.setBounds(52, 380, 170, 25);
+									area.add(label15);
+
+									JLabel label16 = new JLabel(phone);
+									label16.setBounds(220, 380, 120, 25);
+									area.add(label16);
+
+									noRowsFound = false;
+								}
+
+							}
+							state.close();
+							con.close();
+							if (noRowsFound) {
+								JOptionPane.showMessageDialog(login, " UNMATCHED ", " ALERT",
+										JOptionPane.WARNING_MESSAGE);
+							}
+						} catch (Exception e1) {
+							System.out.println(e1);
+						}
+
+					}
+				});
+
+			}
+		});
+
+	}
+
+}
